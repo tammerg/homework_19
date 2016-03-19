@@ -10,10 +10,34 @@
     <section ng-controller="mainController">
       <div class=row>
         <div>
-          <h1>Welcome to Tammer's Yard Sale, {{yourName}} !!</h1>
-          <input type="text" placeholder="your name" ng-model="yourName">
+          <h1>Welcome to the Yard Sale!!</h1>
+          <h2>Have anything youd like to sell?</h2>
+          <h3>Please, list it here!</h3>
         </div>
-      </div>
+        <div class="row">
+          <form ng-submit="addProduct()">
+            <input type="text" placeholder="Item for Sale" ng-model="item.product">
+            <input type="text" placeholder="Price you'd like" ng-model="item.price">
+            <input type="date" placeholder="Date Listed" ng-model="item.date">
+            <input class="btn btn-primary" type="submit" value="add">
+          </form>
+          <table class="col-md-6 col-md-offset-4 table-bordered">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Date Listed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="product in products">
+                <td>{{ product.product }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.date | date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </section>
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
