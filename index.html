@@ -1,0 +1,22 @@
+<!doctype html5>
+<html ng-app="yardApp">
+  <head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <section ng-controller="mainController">
+      <div class=row>
+        <div>
+          <h1>Welcome to Tammer's Yard Sale, {{yourName}} !!</h1>
+          <input type="text" placeholder="your name" ng-model="yourName">
+        </div>
+      </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
