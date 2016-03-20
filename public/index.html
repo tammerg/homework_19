@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
-    <section ng-controller="mainController">
+    <section ng-controller="mainController as yardSale">
       <div class=row>
         <div>
           <h1>Welcome to the Yard Sale!!</h1>
-          <h2>Have anything youd like to sell?</h2>
-          <h3>Please, list it here!</h3>
+          <h2 ng-hide="yardsale.loggedIn"> Plese login to get started.</h2>
+          <h2 ng-show="yardSale.loggedIn">Have anything youd like to sell?</h2>
+          <h3 ng-show="yardSale.loggedIn">Please, list it here!</h3>
         </div>
-        <div class="row">
+        <form ng-submit="yardSale.login()" ng-hide="yardSale.loggedIn">
+          <input type="text" placeholder="Please enter a username" ng-model="yardSale.username">
+          <input class="btn btn-primary" type="submit" value="login">
+        </form>
+        <div class="row" ng-show="yardSale.loggedIn">
           <form ng-submit="addProduct()">
             <input type="text" placeholder="Item for Sale" ng-model="item.product">
             <input type="text" placeholder="Price you'd like" ng-model="item.price">

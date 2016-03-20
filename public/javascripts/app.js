@@ -1,13 +1,27 @@
-var yardSale = angular.module('yardApp', []);
+var app = angular.module('yardApp', []);
 
 
-yardSale.controller('mainController', function($scope){
+app.controller('mainController', function($http){
+  var yardSale = this;
+  yardSale.products = [];
 
-  $scope.products = [];
+  yardSale.login = function(){
+    yardSale.loggedIn = true;
 
-  $scope.addProduct = function(){
-    $scope.products.push($scope.item);
-    $scope.item = {};
-  }
+    $http({
+      method: "POST",
+      url: "/user",
+      data: { username:yardSale.username }
+    }).then(function(result){
+      console.log(result.data);
+      yardSale.userId = result.data._id;
+      yardSale.userId = result.data.username;
+    });
 
+  };
+
+  yardSale.addProduct = function(){
+    yardSale.products.push(yardSale.item);
+    yardSale.item = {};
+  };
 });
