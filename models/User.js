@@ -8,3 +8,6 @@ var userSchema = new Schema({
     unique: true,
   }
 });
+
+var User = mongoose.model('User', userSchema);
+module.exports = User;

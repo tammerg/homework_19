@@ -11,8 +11,9 @@
       <div class=row>
         <div>
           <h1>Welcome to the Yard Sale!!</h1>
-          <h2 ng-hide="yardsale.loggedIn"> Plese login to get started.</h2>
-          <h2 ng-show="yardSale.loggedIn">Have anything youd like to sell?</h2>
+          <h2 ng-hide="yardSale.loggedIn"> Plese login to get started.</h2>
+          <h2 ng-show="yardSale.loggedIn">Welcome {{ yardSale.username }}!</h2>
+          <h2 ng-show="yardSale.loggedIn">Have anything you'd like to sell?</h2>
           <h3 ng-show="yardSale.loggedIn">Please, list it here!</h3>
         </div>
         <form ng-submit="yardSale.login()" ng-hide="yardSale.loggedIn">
