@@ -37,10 +37,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="item in yardSale.items">
-                <td>{{ yardSale.item.product }}</td>
-                <td>{{ yardSale.item.price | currency }}</td>
-                <td>{{ yardSale.item.date | date }}</td>
+              <tr ng-repeat=" item in yardSale.items">
+                <td>{{ item.product }}</td>
+                <td>{{ item.price | currency }}</td>
+                <td>{{ item.date | date }}</td>
               </tr>
             </tbody>
           </table>
