@@ -4,47 +4,56 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
     <section ng-controller="mainController as yardSale">
       <div class=row>
-
         <div>
           <h1>Welcome to the Yard Sale!!</h1>
-          <h2 ng-hide="yardSale.loggedIn"> Plese login to get started.</h2>
+          <h2 ng-hide="yardSale.loggedIn"> Please login to get started.</h2>
           <h2 ng-show="yardSale.loggedIn">Welcome {{ yardSale.username }}!</h2>
           <h2 ng-show="yardSale.loggedIn">Have anything you'd like to sell?</h2>
           <h3 ng-show="yardSale.loggedIn">Please, list it here!</h3>
         </div>
-        <form ng-submit="yardSale.login()" ng-hide="yardSale.loggedIn">
-          <input type="text" placeholder="Please enter a username" ng-model="yardSale.username">
-          <input class="btn btn-primary" type="submit" value="login">
+      </div>
+      <form ng-submit="yardSale.login()" ng-hide="yardSale.loggedIn">
+        <input type="text" placeholder="Please enter a username" ng-model="yardSale.username">
+        <input class="btn btn-primary" type="submit" value="login">
+      </form>
+      <div class="row" ng-show="yardSale.loggedIn">
+        <form ng-submit="yardSale.addItem()">
+          <input type="text" placeholder="Item for Sale" ng-model="yardSale.item.product">
+          <input type="text" placeholder="Price you'd like" ng-model="yardSale.item.price">
+          <input type="date" placeholder="Date Listed" ng-model="yardSale.item.date">
+          <input class="btn btn-primary" type="submit" value="add">
         </form>
-        <div class="row" ng-show="yardSale.loggedIn">
-          <form ng-submit="yardSale.addItem()">
-            <input type="text" placeholder="Item for Sale" ng-model="yardSale.item.product">
-            <input type="text" placeholder="Price you'd like" ng-model="yardSale.item.price">
-            <input type="date" placeholder="Date Listed" ng-model="yardSale.item.date">
-            <input class="btn btn-primary" type="submit" value="add">
-          </form>
-          <table class="col-md-6 col-md-offset-4 table-bordered">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Date Listed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat=" item in yardSale.items">
-                <td>{{ item.product }}</td>
-                <td>{{ item.price | currency }}</td>
-                <td>{{ item.date | date }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      </div>
+       <div class="row" ng-show="yardSale.loggedIn">
+        <table class="table1 table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Date Listed</th>
+              <th>Purchase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat=" item in yardSale.items">
+              <td>{{ item.product }}</td>
+              <td>{{ item.price | currency }}</td>
+              <td>{{ item.date | date }}</td>
+              <td>
+                <button type="button" ng-click="yardSale.purchaseItem($index)" class="btn btn-primary fa fa-credit-card">Purchase!</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

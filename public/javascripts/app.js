@@ -37,5 +37,8 @@ app.controller('mainController', function($http){
        yardSale.login();
      });
    };
-
+   yardSale.purchaseItem = function(index){
+     console.log('this runs');
+     yardSale.items.splice(index);
+   };
 });
