@@ -48,6 +48,34 @@ app.post('/user', function(req, res) {
     });
 });
 
+app.post('/newitem', function(req, res) {
+  var itemWithUserId = req.body;
+  itemWithUserId._user = req.params.id;
+
+  var newItem = new Product(itemWithUserId);
+  newItem.save(function(err, doc) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      User.findOneAndUpdate({
+        _id: req.params.id
+      }, {
+        $push: {
+          'items': doc._id
+        }
+      },{new:true}, function(err, updatedUser) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(updatedUser);
+        }
+      });
+    }
+  });
+});
+
+
 app.listen(PORT, function(req, res){
   console.log("You're listening on port: %s", PORT);
 });

@@ -20,8 +20,18 @@ app.controller('mainController', function($http){
 
   };
 
-  yardSale.addProduct = function(){
-    yardSale.products.push(yardSale.item);
-    yardSale.item = {};
-  };
+  yardSale.addItem = function() {
+     $http({
+       method: 'POST',
+       url: '/newitem',
+       data: {
+         amount:yardSale.item.product,
+         name: yardSale.item.name,
+         date: yardSale.item.date
+       }
+     }).then(function(result) {
+       yardSale.login();
+     });
+   };
+
 });
