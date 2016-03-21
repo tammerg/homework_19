@@ -10,6 +10,7 @@ var db = 'mongodb://localhost/yardsale';
 mongoose.connect(db);
 
 var User = require('./models/User');
+var Item = require('./models/Item');
 
 app.use(logger('dev'));
 app.use(express.static(__dirname + "/public"));
@@ -48,11 +49,11 @@ app.post('/user', function(req, res) {
     });
 });
 
-app.post('/newitem', function(req, res) {
+app.post('/newitem/:id', function(req, res) {
   var itemWithUserId = req.body;
   itemWithUserId._user = req.params.id;
 
-  var newItem = new Product(itemWithUserId);
+  var newItem = new Item(itemWithUserId);
   newItem.save(function(err, doc) {
     if (err) {
       console.log(err);

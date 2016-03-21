@@ -20,26 +20,22 @@ app.controller('mainController', function($http){
     });
 
   };
+  yardSale.addItem = function() {
+      // console.log(yardSale.item.product);
+      yardSale.items.push(yardSale.item);
+      yardSale.item = {};
 
-  yardSale.addItem = function(){
-    console.log(yardSale.item.product);
-		yardSale.items.push(yardSale.item);
-		yardSale.item = {};
-  };
-
-  //
-  // yardSale.addItem = function() {
-  //    $http({
-  //      method: 'POST',
-  //      url: '/newitem',
-  //      data: {
-  //        amount:yardSale.item.product,
-  //        name: yardSale.item.name,
-  //        date: yardSale.item.date
-  //      }
-  //    }).then(function(result) {
-  //      yardSale.login();
-  //    });
-  //  };
+     $http({
+       method: 'POST',
+       url: '/newitem/' + yardSale.userId,
+       data: {
+         saleItem: yardSale.item.product,
+         price : yardSale.item.price,
+         date: yardSale.item.date
+       }
+     }).then(function(result) {
+       yardSale.login();
+     });
+   };
 
 });
