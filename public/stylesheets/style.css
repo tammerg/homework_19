@@ -13,3 +13,25 @@ section {
   width: 800px;
   border-color: white;
 }
+i{
+  color: black;
+}
+/*.fa-shopping-bag{
+  color: white;
+}*/
+.btnBuy{
+  text-align: center;
+}
+.fa-text-width{
+  color: white;
+}
+.fa-check{
+  color: white;
+  right: 0;
+}
+.loginToken{
+  background-color: black;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+}

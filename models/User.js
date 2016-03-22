@@ -11,10 +11,6 @@ var userSchema = new Schema({
     type : Date,
     default : Date.now()
   },
-  items : [{
-    type : Schema.Types.ObjectId,
-    ref : 'Item'
-  }]
 });
 
 var User = mongoose.model('User', userSchema);

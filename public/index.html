@@ -9,12 +9,21 @@
     <link href='https://fonts.googleapis.com/css?family=PT+Serif:700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
-  <body>
-    <section ng-controller="mainController as yardSale">
-      <div class=row>
+  <body ng-controller="mainController as yardSale">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+         <div>
+          <ul class="nav navbar-nav">
+            <i class="fa fa-text-width fa-3x"><a href="https://tgportfolio.herokuapp.com">ammer's Portfolio</a></i>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section>
+      <div class="row">
         <div>
-          <h1>Welcome to the Yard Sale!!</h1>
-          <h2 ng-hide="yardSale.loggedIn"> Please login to get started.</h2>
+          <h1><i class="fa fa-usd fa-1x"></i>Welcome to the Yard Sale<i class="fa fa-usd fa-1x"></i></h1>
+          <h2 ng-hide="yardSale.loggedIn">Please login to get started    <i class="fa fa-thumbs-up fa-1x"></i></h2>
           <h2 ng-show="yardSale.loggedIn">Welcome {{ yardSale.username }}!</h2>
           <h2 ng-show="yardSale.loggedIn">Have anything you'd like to sell?</h2>
           <h3 ng-show="yardSale.loggedIn">Please, list it here!</h3>
@@ -48,13 +57,17 @@
               <td>{{ item.price | currency }}</td>
               <td>{{ item.date | date }}</td>
               <td>
-                <button type="button" ng-click="yardSale.purchaseItem($index)" class="btn btn-primary fa fa-credit-card">Purchase!</button>
+                <button type="button" ng-click="yardSale.purchaseItem($index)" class="btn btn-primary fa fa-credit-card btnBuy">Purchase!</button>
+                <!-- <i class="fa fa-shopping-bag"></i> -->
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
+    <div class="loginToken col-md-2 col-md-offset-10" ng-show="yardSale.loggedIn">
+      <i class="fa fa-check">Logged in as: {{yardSale.username}}</i>
+    </div>
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/javascripts/app.js"></script>
